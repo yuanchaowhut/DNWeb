@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underscore</title>
+
+    <script src="Underscore-v3.0.js"></script>
+    <!--<script src="Underscore.js"></script>-->
+</head>
+<body>
+
+</body>
+
+<script>
+    //一、IE9 下 使用 for in 的兼容性问题
+
+
+    //二、连续调用多次的迭代器(并将结果存储到一个数组返回)
+    var res1 = _.times(5, function (value) {
+        return Math.pow(value, 2);
+    });
+    console.log(res1);
+
+    //二、累加迭代器
+    var res2 = _.reduce([1, 2, 3, 4, 5, 6, 7, 8, 9], function (memo, value, index, obj) {   //最稳定的参数[必须得要的参数]放在最前面
+        return memo + value;
+    }, 0);
+
+    console.log(res2);
+
+</script>
+</html>

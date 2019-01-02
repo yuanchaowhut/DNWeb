@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underscore</title>
+
+    <script src="Underscore-v4.0.js"></script>
+    <!--<script src="Underscore.js"></script>-->
+</head>
+<body>
+
+</body>
+
+<script>
+    //一、rest参数
+    //柯里化：把接收多个参数的函数 转变为接收单一参数，剩余参数通过rest接收
+    function add(a, b, rest) {
+        var memo = _.reduce(rest, function (memo, value, i, obj) {
+            return memo + value;
+        });
+        return memo;
+    }
+
+    var restArgs = _.restArgs(add);
+    var result = restArgs(1, 2, 3, 4, 5);
+    console.log(result);
+
+    //二、字符串逃逸(输出特殊字符)
+    var escapeMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        '`': '&#x60;'
+    };
+
+    var createEscaper = function (map) {
+        //match参数为正则匹配到的每一项
+        var escaper = function (match) {
+            return map[match];
+        };
+
+        var exp = "(?:" + _.keys(map).join("|") + ")";    //?:表示只获取不匹配
+        console.log("exp:" + exp);
+        var testExp = new RegExp(exp);           //test时只要目标源字符串中包含任意一个需逃逸的字符，则test就会返回true，故不用全局模式.
+        var replaceExp = new RegExp(exp, 'g');   //替换时由于需全局替换，故要用全局模式
+
+        return function (string) {
+            string = string == null ? "" : string;
+            return testExp.test(string) ? string.replace(replaceExp, escaper) : string;
+        }
+    };
+
+    var escape = createEscaper(escapeMap);
+    var str = escape("<Hello '&' World!>");
+    //注意：如果没有经过上一步"字符逃逸"，直接输是输不出这些特殊字符的！
+    document.write(str);
+</script>
+</html>

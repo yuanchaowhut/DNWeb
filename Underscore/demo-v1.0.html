@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underscore</title>
+
+    <script src="Underscore-v1.0.js"></script>
+    <!--<script src="Underscore.js"></script>-->
+</head>
+<body>
+
+</body>
+
+<script>
+    var arr = [1, 2, 3, 4, 5, 4, 3, 2, 1, 'a', 'A', 'b'];
+    var res1 = _.uniq(arr, function (value) {
+        return typeof value === "string" ? value.toLowerCase() : value;
+    });
+    console.log(res1);
+
+    var res2 = _(arr).uniq(function (value) {
+        return typeof value === "string" ? value.toLowerCase() : value;
+    });
+    console.log(res2);
+</script>
+</html>

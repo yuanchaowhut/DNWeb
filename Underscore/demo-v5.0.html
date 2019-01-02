@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underscore</title>
+
+    <script src="Underscore-v5.0.js"></script>
+</head>
+<body>
+
+</body>
+
+<script>
+    //一、字符的逃逸与反逃逸
+    var str = "<div>Hello World</div>";
+    document.write(_.escape(str));
+
+    var str2 = "&lt;div&gt; Hello Javascript &lt;/div&gt;";
+    document.write(_.unescape(str2));
+
+    //二、template模板引擎设计
+    //1、早期的MVC框架  JSP java 脚本
+    //2、ajax   前后端分离     数据   +  模板文件 =  html 文件
+    //3、nodejs 中间件 后台提供数据 中间层做模板引擎渲染    ejs 模板引擎
+    //字符串  拼接
+    //模板引擎     功能: 模板替换 处理js逻辑   风格  <%%>  {{}}  标识符
+    //模板编译  <%%>  {{ name }}   html文件   +  渲染  数据的绑定
+    //风格 <%= 插入变量 %> <% js逻辑 %>   <%- 字符串的逃逸 %>
+    /*
+    var compile = _.template("hello: <%= name %>");   //模板函数   编译
+    var html = compile({name:"max"});   //渲染
+    console.log(html)
+    var compile = _.template("hello: <% alert(123) %>");   //模板函数   编译
+    var html = compile();   //渲染
+    console.log(html)
+    */
+
+    // var str3 = "hello, <%=name%>, you are <%=age%>, you are a <%-sex%>";
+    // var obj3 = {name: "tom", age: 18, sex: '<man>'};
+    // var compiled3 = _.template(str3);
+    // console.log(compiled3(obj3));
+    //
+    // var str4 = "hello, <% alert('tom') %>";
+    // compiled4 = _.template(str4);
+    // compiled4();
+
+
+    var str5 = "hello, <%=data.name%>, you are <%=data.age%>, you are a <%-data.sex%>";
+    var obj5 = {name: "kate", age: 19, sex: '<woman>'};
+    compiled5 = _.template(str5, {variable: 'data'});
+    console.log(compiled5(obj5));
+</script>
+</html>

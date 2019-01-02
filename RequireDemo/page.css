@@ -1,0 +1,21 @@
+#container {
+    width: 600px;
+    margin: 20px auto;
+    background: #EEEECC;
+}
+
+#wd {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#wd td{
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #0094ff;
+}
+
+#wd tr:hover{
+    background: #DEDEDE;
+}

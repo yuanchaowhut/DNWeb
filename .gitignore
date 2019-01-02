@@ -1,0 +1,8 @@
+node_modules/
+package-lock.json
+output/
+.DS_Store
+.idea/
+*.log
+.tern-port
+.vscode

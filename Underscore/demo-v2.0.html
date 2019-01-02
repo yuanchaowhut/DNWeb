@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underscore</title>
+
+    <script src="Underscore-v2.0.js"></script>
+    <!--<script src="Underscore.js"></script>-->
+</head>
+<body>
+
+</body>
+
+<script>
+    //一、实现链式调用
+    var arr = [1, 2, 3, 4, 5, 4, 3, 2, 1, 'a', 'A', 'b'];
+
+    var res1 = _.chain(arr).uniq(function (value) {
+        return typeof value === "string" ? value.toLowerCase() : value;
+    });
+    console.log(res1);
+
+
+    var res2 = _(arr).chain().uniq(function (value) {
+        return typeof value === "string" ? value.toLowerCase() : value;
+    });
+    console.log(res2);
+
+    console.log(_(arr).chain().value());
+
+    //二、初步搭建迭代器架构
+    var a = [1, 2, 3];
+    var res3 = _.map(a, function (value, index, obj) {
+        return value * 2;
+    });
+    console.log(res3);
+
+</script>
+</html>

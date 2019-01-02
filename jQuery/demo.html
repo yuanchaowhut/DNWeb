@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="jquery-v5.0.js"></script>-->
+    <script src="jquery-v5.0.2.js"></script>
+
+</head>
+<body>
+<div id="box">
+    <div id="el">Hello World</div>
+</div>
+</body>
+
+<script>
+    //用defer绑定一个普通函数
+    function wait(defer) {
+        var test = function () {
+            console.log("老司机开车了！");
+            defer.resolve();
+        };
+
+        // test();
+        setTimeout(test, 3000);
+        return defer;
+    }
+
+    var defer = $.Deferred();
+    $.when(wait(defer))               //wait(defer) 代表一个异步操作， $.when(wait(defer)) 返回的是一个promise对象
+        .done(function () {
+            console.log("执行成功了！");
+            console.log(defer.state());
+        })
+        .fail(function () {
+            console.log("执行失败了！");
+        })
+        .done(function () {
+            console.log("执行还是成功了！")
+        })
+        .progress(function () {
+            console.log("正在执行中....");
+        });
+
+</script>
+</html>

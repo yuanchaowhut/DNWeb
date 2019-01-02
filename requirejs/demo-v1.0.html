@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>requirejs</title>
+
+    <script src="require-v1.0.js"></script>
+</head>
+<body>
+
+<script>
+    // requireUse(['a'], function (a) {
+    //     a.work();
+    // });
+    //
+    // requireUse(['b'], function (b) {
+    //     b.work();
+    // });
+
+    requireUse(['a','b'],function (a,b) {
+        a.work();
+        b.work();
+    });
+
+    // requireUse(['c'], function (c) {
+    //     c.work();
+    // });
+
+</script>
+</body>
+</html>

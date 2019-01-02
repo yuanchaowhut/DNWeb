@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Underscore</title>
+
+    <script src="Underscore-v6.0.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #box {
+            width: 100%;
+            height: 4000px;
+            background: #ff00ff;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+</body>
+
+<script>
+    //一、洗牌算法/乱序
+    var arr1 = [1, 2, 3, 4, 5, 6];
+    var res1 = _.shuffle(arr1);
+    console.log(res1);
+
+    var arr2 = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6};
+    var res2 = _.shuffle(arr2);
+    console.log(res2);
+
+    var arr4 = [1, 2, 3, 4, 5, 6];
+    var res4 = _.sample(arr4, 3);
+    console.log(res4);
+
+    //二、节流和防抖
+    /*应用场景
+        对于一些连续触发的时间的处理方式。
+        DOM拖拽   节流
+        懒加载      节流
+        计算鼠标的位置  节流
+        canvas  画板     节流
+        点击按钮 发送一个ajax请求   防抖
+
+
+        防抖:一个处理函数在一段时间内会被大量的触发 但是我只执行一次。   频繁  慢（定时器的玩法）
+        节流:一个处理函数在一段时间内会被大量的触发 控制他触发的频繁。   频繁  快（定时器的玩法）
+        概念：
+        节流  让一个函数不要执行的太过频繁   减少一些过快的调用。
+              会自动读秒，假设第一次触发需等1，2，3秒，过1秒后再触发就只需等1，2秒，再过1秒后再触发，则只需等1秒。
+        防抖  一段时间内连续函数的调用只让他执行一次。
+              不会自动读秒，假设第一次触发需等1，2，3秒，过1秒后再触发则会重新读秒，需重新等1，2，3秒。
+
+        所以节流和防抖的区别：
+        前提:一个处理函数在一段时间被大量触发
+        1.前者频率相对较高，后者频率相对低；
+        2.前者降频调用，后者只执行一次；
+        3.前者自动读秒，后者重新读秒；
+    */
+
+    // function fn() {
+    //     console.log("hello tom");
+    // }
+    //
+    // window.onscroll = _.debounce(fn, 1000,true);
+
+    function fn(name) {
+        console.log("hello " + name);
+    }
+
+    // var callback = _.debounce(fn, 1000);
+    var callback = _.throttle(fn, 3000);
+
+    window.onscroll = function () {
+        callback("kate");
+    };
+</script>
+</html>
